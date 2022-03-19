@@ -32,6 +32,9 @@ public class QRcode {
         this.receiver = receiver;
     }
 
+    public QRcode() {
+    }
+
     public QRcode(String sender, String receiver) {
         this.sender = sender;
         this.receiver = receiver;

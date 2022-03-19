@@ -22,7 +22,7 @@ public class QRcodeController {
 
     @GetMapping("/{Code}")
     public MessageResponse getQRcode(@PathVariable long Code)  {
-        log.info("Ger QRcode Info");
+        log.info("Get QRcode Info");
         return new MessageResponse(Qrcodeservice.findQRcode(Code));
     }
 
