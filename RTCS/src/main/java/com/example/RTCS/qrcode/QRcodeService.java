@@ -11,17 +11,27 @@ import java.util.Optional;
 public class QRcodeService {
 
     @Autowired
-    private QRcodeRepository QrcodeRepository;
+    private QRcodeRepository qRcodeRepository;
 
-    public String findQRcode(long id) {
-        Optional<QRcode> result = QrcodeRepository.findById(id);
-        if (result.isPresent()) {
-            return "found";
-        } return  "not found";
+    //for mockito
+    public void setQRcodeRepository(QRcodeRepository qRcodeRepository) {
+        this.qRcodeRepository = qRcodeRepository;
     }
 
-    public String Generate(QRcode qRcode){
-        QrcodeRepository.save(qRcode);
-        return "Generate Success";
+    public String findQRcode(long id) {
+        Optional<QRcode> result = qRcodeRepository.findById(id);
+        if (result.isPresent()) {
+            return "found";
         }
+        return "not found";
+    }
+
+    public String Generate(QRcode qRcode) {
+        qRcodeRepository.save(qRcode);
+        Optional<QRcode> result = qRcodeRepository.findById(qRcode.getId());
+        if (result.isPresent()) {
+            return "Generate Success";
+        }
+        return "Generate not success";
+    }
 }
