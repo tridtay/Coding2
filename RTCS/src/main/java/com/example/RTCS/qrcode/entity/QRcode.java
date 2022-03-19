@@ -3,23 +3,38 @@ package com.example.RTCS.qrcode.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "QRcode")
 public class QRcode {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "QRcode_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(mappedBy = "qRcode", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-    private Sender sender;
+    @Column(name = "sender", nullable = false)
+    private String sender;
+    @Column(name = "receiver", nullable = false)
+    private String receiver;
 
-    @OneToOne(mappedBy = "qRcode", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-    private Receiver receiver;
 
-    public Receiver getReceiver() {
+
+    public String getSender() {
+        return sender;
+    }
+
+    public void setSender(String sender) {
+        this.sender = sender;
+    }
+
+    public String getReceiver() {
         return receiver;
+    }
+
+    public void setReceiver(String receiver) {
+        this.receiver = receiver;
+    }
+
+    public QRcode(String sender, String receiver) {
+        this.sender = sender;
+        this.receiver = receiver;
     }
 
     public Long getId() {

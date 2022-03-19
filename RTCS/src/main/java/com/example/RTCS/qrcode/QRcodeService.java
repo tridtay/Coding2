@@ -20,13 +20,8 @@ public class QRcodeService {
         } return  "not found";
     }
 
-    public String Generate(QRcode QRcode){
-        Optional<QRcode> result = QrcodeRepository.findById(QRcode.getId());
-        if (result.isPresent()) {
-            return  "Not found";
-        } else {
-            QrcodeRepository.save(QRcode);
-            return "Generate Success";
+    public String Generate(QRcode qRcode){
+        QrcodeRepository.save(qRcode);
+        return "Generate Success";
         }
-    }
 }
